@@ -3,6 +3,8 @@ from .models import *
 
 def subjects(request):
     return render(request,'subjects.html')
+def about(request):
+    return render(request,'about.html')
 
 
 
