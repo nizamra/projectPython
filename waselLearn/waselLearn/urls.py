@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('loginAuth/', include('loginAuth.urls')),
+    path('', include('loginAuth.urls')),
     path('waselApp/', include('waselApp.urls')),
 ]
 
