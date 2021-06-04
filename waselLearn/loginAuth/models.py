@@ -79,6 +79,7 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     birthDate = models.DateField()
     passwd = models.CharField(max_length=255)
+    # planePassword = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     mobile=models.CharField(max_length=15)#0598135  213  21
@@ -88,13 +89,14 @@ class User(models.Model):
     privilage = models.IntegerField(default=9, choices = privilageChoices)#needs revision
     genderChoices=(('m', 'm'),('f','f'))
     gender = models.CharField(max_length=2, choices = genderChoices)#maleorfemale
-    cv = models.FileField(null=True)#pdf files nullable
-    img = models,ImageField(null=True)#image of teacher nullable
+    cv = models.FileField(upload_to='uploads/%Y%m%d', max_length=254,null=True)#pdf files nullable
+    #loginAuth.User.img: (fields.E210) Cannot use ImageField because Pillow is not installed.
+        # HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow".
+    img = models.ImageField(upload_to='images/',null=True)#image of teacher nullable
     raters=models.IntegerField(null=True)
     rate=models.FloatField(null=True)
     location = models.CharField(max_length=35,null=True)
-    objects = UserManager()
+    #objects = UserManager()
 
-
+    # Command For Shell
     # User.objects.create(firstName="Jane",lastName="Austen", about="some about old data", email="mail@gmail.com",birthDate="2020-08-10", passwd="Passwd@66",mobile="0598135213",privilage=9, gender="m")
-    

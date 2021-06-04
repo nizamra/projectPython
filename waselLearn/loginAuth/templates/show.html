@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Show All</title>
+</head>
+<body>
+    {%for user in allUsers%}
+    <p>firstName{{user.firstName}}</p>
+    <p>lastName{{user.lastName}}</p>
+    <p>birthDate{{user.birthDate}}</p>
+    <p>email{{user.email}}</p>
+    <p>passwd{{user.passwd}}</p>
+    <p>mobile{{user.mobile}}</p>
+    <p>privilage{{user.privilage}}</p>
+    <p>gender{{user.gender}}</p>
+    <p>cv {{user.cv}}</p>
+    <a href="{{user.cv.url}}" download="CV">texts</a>
+    <p>location {{user.location}}</p>
+
+    <p>img {{user.img}}</p><br><br><hr><br>
+    {%endfor%}
+    {% for user in allUsers %}
+        {{ user.firstName }}
+            <img src="{{ user.img.url }}" style="width: 30%; float: left; margin-right: 10px;" />
+    {% endfor %}
+</body>
+</html>

@@ -6,7 +6,10 @@ def subjects(request):
 def about(request):
     return render(request,'about.html')
 
-
+def allTeachers(request):
+    return render(request,'allTeachers.html')
+def teachers(request):
+    return render(request,'teacher.html')
 
 
 
@@ -61,6 +64,6 @@ def about(request):
 #     unlikeSomeThought(id, userId)
 #     return redirect('/')
 
-# def cleanTheSession(request):
-#     request.session.clear()
-#     return redirect('/')
+def cleanTheSession(request):
+    request.session.clear()
+    return redirect('/')

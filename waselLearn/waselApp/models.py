@@ -2,12 +2,7 @@ import sys
 from os import path
 from django.db.models.fields.files import ImageField
 from time import localtime, strftime
-
-# from waselLearn\loginAuth\models.py  import User
-# from waselLearn\loginAuth\models  import User
 from loginAuth.models import User
-# from .. import loginAuth.models.User
-
 from django.db import models
 import re
 

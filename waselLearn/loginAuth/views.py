@@ -1,12 +1,63 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
+from .forms import *
+
+# Create your views here.
+def imageView(request):
+
+	if request.method == 'POST':
+		form = UserForm(request.POST, request.FILES)
+
+		if form.is_valid():
+			form.save()
+			return redirect('success')
+	else:
+		form = UserForm()
+	return render(request, 'form.html', {'form' : form})
 
 
-def index(request):
-    if "id" in request.session:
-        return redirect('/waselApp/subjects')
-    return render(request,'index.html')
+def success(request):
+    if request.method == 'GET':
+        users=User.objects.all()
+        return render(request, 'show.html',
+                     {'allUsers' : users})
+
+
+
+# def index(request):
+#     if "id" in request.session:
+#         return redirect('/waselApp/subjects')
+#     return render(request,'index.html')
+
+# def form(request):
+#     return render(request,'form.html')
+
+# def register(request):
+#     User.objects.create(firstName=request.POST['firstName'],
+#     lastName=request.POST['lastName'],
+#     birthDate=request.POST['birthDate'],
+#     email=request.POST['email'],
+#     passwd=request.POST['passwd'],
+#     mobile=request.POST['mobile'],
+#     privilage=request.POST['privilage'],
+#     gender=request.POST['gender'],
+#     cv=request.POST['cv'],
+#     location=request.POST['location'],
+#     img=request.POST['img'],)
+#     return redirect('/loginAuth/showAll')
+
+# def showAll(request):
+#     ccs={
+#         'users':User.objects.all()
+#     }
+#     return render(request, "show.html",ccs)
+
+
+
+
+
 
 
 # def loginOrRegister(request):
