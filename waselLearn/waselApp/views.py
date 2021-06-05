@@ -20,11 +20,12 @@ def teachers(request):
 
     
 def teacher(request,teacherId):
-    todayTime= strftime("%Y-%m-%A", localtime())
+    todayTime= strftime("%Y-%B-%A", localtime())
     todayTimeList = todayTime.split("-")
     context={
 		'teacher' : User.objects.get(id=teacherId),
 		'times' : todayTimeList,
+        'n' : range(9) 
 	}
     return render(request,"teacher.html",context)
 

@@ -164,38 +164,22 @@
                 <th scope="col">Day</th>
                 <th scope="col">Reserved</th>
                 <th scope="col">Reserve this session</th>
+                <th scope="col">clear this session</th>
               </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>9:00</td>
-                    <td>{{times.2}}</td>
-                    <td>No</td>
-                    <td><button class="but">Reserve</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>10:00</td>
-                    <td>{{times.2}}</td>
-                    <td>No</td>
-                    <td><button class="but">Reserve</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>11:00</td>
-                    <td>{{times.2}}</td>
-                    <td>No</td>
-                    <td><button class="but">Reserve</button></td>
-                </tr>
-                {% for time in days %}
+                {% for i in n %}
               <tr>
-                <th scope="row">{{time.id}}</th>
-                <td>12:00</td>
-                <td>{{times.2}}</td>
-                <td>Yes</td>
+                <th scope="row">{{i|add:1}}</th>
+                <td>{{i|add:9}}:00</td>
+                <td>{{times.1}} - {{times.2}}</td>
+                <td id="chgtext{{i}}">No</td>
+                <td> <button onclick="document.getElementById('chgtext{{i}}').innerHTML='YES';" class="but" type="button" >Reserve</button></td>
+                <td> <button onclick="document.getElementById('chgtext{{i}}').innerHTML='NO';" class="but" type="button" >clear</button></td>
               </tr>
              {% endfor %}
+
+             
             </tbody>
         </table>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27095.77849694207!2d35.18837244335496!3d31.907349649554366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502d54cda2d58d1%3A0xbf6d4d17cc8b2c76!2sRamallah!5e0!3m2!1sen!2s!4v1622903430348!5m2!1sen!2s" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
