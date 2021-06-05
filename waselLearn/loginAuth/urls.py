@@ -8,6 +8,7 @@ urlpatterns = [
 	path('success', success, name = 'success'),
 	path('form', imageView, name = 'image_upload'),
 	path('login', login),
+	path('logreg', loginOrRegister),
 	
 ]
 
