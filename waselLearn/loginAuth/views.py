@@ -31,11 +31,6 @@ def teachers(request):
 	}
 	return render(request,"teachers.html",context)
 
-def teacher(request,teacherId):
-	context={
-		'teacher' : User.objects.get(id=teacherId),
-	}
-	return render(request,"teacher.html",context)
 
 
 # def index(request):
