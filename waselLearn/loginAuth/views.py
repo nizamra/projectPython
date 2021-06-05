@@ -24,6 +24,8 @@ def success(request):
         return render(request, 'show.html',
                      {'allUsers' : users})
 
+def teachers(request):
+    return render(request,'teachers.html')
 
 
 # def index(request):

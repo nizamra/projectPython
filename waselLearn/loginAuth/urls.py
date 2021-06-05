@@ -7,6 +7,7 @@ from .views import *
 urlpatterns = [
 	path('', success, name = 'success'),
 	path('form', imageView, name = 'image_upload'),
+	path('teachers', teachers),
 ]
 
 if settings.DEBUG:
