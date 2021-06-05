@@ -85,6 +85,8 @@ class User(models.Model):
     mobile=models.CharField(max_length=15)#0598135  213  21
     statusChoices=(('active', 'active'),('deleted','deleted'),('inactive','inactive'),('Suspended','Suspended'))
     status = models.CharField(max_length=25, default='active', choices = statusChoices)#active by default, can be deleted
+    courseChoices=(('physics', 'physics'),('chemistry','chemistry'),('english','english'),('mathematics','mathematics'),('arabic','arabic'),('biology','biology'),('art','art'),('music','music'),('history','history'))
+    course = models.CharField(max_length=25, choices = courseChoices)
     privilageChoices=((9, 9),(8,8),(7,7),(1,1),(0,0))
     privilage = models.IntegerField(default=9, choices = privilageChoices)#needs revision
     genderChoices=(('m', 'm'),('f','f'))
