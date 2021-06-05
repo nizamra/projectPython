@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 
+def home(request):
+    return render(request,'home.html')
+    
 def subjects(request):
     return render(request,'subjects.html')
 def about(request):

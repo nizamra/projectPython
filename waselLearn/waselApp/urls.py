@@ -1,10 +1,11 @@
 from django.urls import path     
-from . import views
+from .views import home,subjects,about,allTeachers,teachers
 urlpatterns = [
-    path('subjects', views.subjects),
-    path('about', views.about),
-    path('allTeachers', views.allTeachers),
-    path('teachers', views.teachers),
+    path('home', home),
+    path('subjects', subjects),
+    path('about', about),
+    path('allTeachers', allTeachers),
+    path('teachers', teachers),
     # path('waselApp/', views.),
     # path('waselApp/', views.),
 ]
