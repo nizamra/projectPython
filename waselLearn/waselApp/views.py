@@ -3,7 +3,7 @@ from .models import *
 
 def home(request):
     return render(request,'home.html')
-    
+
 def subjects(request):
     return render(request,'subjects.html')
 def about(request):
@@ -12,7 +12,10 @@ def about(request):
 def allTeachers(request):
     return render(request,'allTeachers.html')
 def teachers(request):
-    return render(request,'teacher.html')
+    context={
+        'allUsers' : User.objects.all(),
+    }
+    return render(request,"teachers.html",context)
 
 
 

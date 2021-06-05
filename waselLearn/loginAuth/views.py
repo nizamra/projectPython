@@ -5,11 +5,12 @@ from .models import *
 from .forms import *
 
 # Create your views here.
-def imageView(request):
+def login(request):
+	return render(request,"login.html")
 
+def imageView(request):
 	if request.method == 'POST':
 		form = UserForm(request.POST, request.FILES)
-
 		if form.is_valid():
 			form.save()
 			return redirect('success')
