@@ -6,6 +6,9 @@ from .models import *
 from .forms import *
 
 # Create your views here.
+def goto(request):
+    return redirect('waselApp/home')
+    
 def login(request):
     return render(request,"login.html")
 
@@ -61,17 +64,7 @@ def success(request):
 #     }
 #     return render(request, "show.html",ccs)
 
-<<<<<<< HEAD
 
-
-
-
-
-
-
-=======
-<<<<<<< HEAD
->>>>>>> e33cb13dc96d3348d061e227f00eed6f7b147a30
 def loginOrRegister(request):
     if (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="student"):
         errors = User.objects.isValid(request.POST)
@@ -80,7 +73,6 @@ def loginOrRegister(request):
                 messages.error(request, value)
             return redirect('/login')
         else:
-<<<<<<< HEAD
             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
             User.objects.create(firstName=request.POST['fname'],lastName=request.POST['lname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['bday'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['mobile'],status=request.POST['status'],privilage=9,gender=request.POST['gender'],location=request.POST['location'])
             thisUser=User.objects.get(email=request.POST['email'])
@@ -128,96 +120,3 @@ def loginOrRegister(request):
                 return redirect('/login')
 
     return redirect('/login')
-=======
-            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(),
-			bcrypt.gensalt()).decode(),
-			User.objects.create(firstName=request.POST['fname'],
-			lastName=request.POST['lname'],
-			about=request.POST['about'],
-			email=request.POST['email'],
-			birthDate=request.POST['bday'],
-			passwd=hashedPasswd,
-			planePassword=request.POST['password'],
-			mobile=request.POST['mobile'],
-			status=request.POST['status'],
-			privilage=9,
-			gender=request.POST['gender'],
-=======
-# def loginOrRegister(request):
-#     if (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="student"):
-#         errors = User.objects.isValid(request.POST)
-#         if len(errors) > 0:
-#             for key, value in errors.items():
-#                 messages.error(request, value)
-#             return redirect('/login')
-#         else:
-#             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-# 			User.objects.create(firstName=request.POST['fname'],
-# 			lastName=request.POST['lname'],
-# 			about=request.POST['about'],
-# 			email=request.POST['email'],
-# 			birthDate=request.POST['bday'],
-# 			passwd=hashedPasswd,
-# 			planePassword=request.POST['password'],
-# 			mobile=request.POST['mobile'],
-# 			status=request.POST['status'],
-# 			privilage=9,
-# 			gender=request.POST['gender'],
->>>>>>> bda75faee6877433e912b7fcaeb9eddec46926ec
-
-# 			location=request.POST['location'])
-			
-# 			thisUser=User.objects.get(email=request.POST['email'])
-# 			request.session['userId']=thisUser.id
-# 			return redirect('waselApp/home')
-#     elif (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="teacher"):
-#         errors = User.objects.isValid(request.POST)
-#         if len(errors) > 0:
-#             for key, value in errors.items():
-#                 messages.error(request, value)
-#             return redirect('/login')
-#         else:
-#             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-# 			User.objects.create(firstName=request.POST['fname'],
-# 			lastName=request.POST['lname'],
-# 			about=request.POST['about'],
-# 			email=request.POST['email'],
-# 			birthDate=request.POST['bday'],
-# 			passwd=hashedPasswd,
-# 			planePassword=request.POST['password'],
-# 			mobile=request.POST['mobile'],
-# 			status=request.POST['status'],
-# 			course=request.POST['course'],
-# 			privilage=8,
-# 			gender=request.POST['gender'],
-# 			cv=request.POST['cv'],
-# 			img=request.POST['img'],
-# 			location=request.POST['location'])
-			
-# 			thisUser=User.objects.get(email=request.POST['email'])
-# 			request.session['userId']=thisUser.id
-# 			return redirect('waselApp/home')
-# 	elif (request.method=="POST") and (request.POST['regesterOrLogin']=="login"):
-# 		errors = User.objects.loginValid(request.POST)
-#         if len(errors) > 0:
-#             for key, value in errors.items():
-#                 messages.error(request, value)
-#             return redirect('/login')
-#         else:
-#             one=request.POST['email']
-#             two=request.POST['password']
-#             try:
-#                 users = User.objects.filter(email=one)
-#                 thisUser = users[0]
-#             except:
-#                 messages.error(request, "this email doesn't exist")
-#                 return redirect('/login')
-#             # if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
-#             if (two==thisUser.planePassword):
-#                 request.session['userId']=thisUser.id
-#                 return redirect('waselApp/home')
-#             else:
-#                 messages.error(request, "I have this email but the password is NOT right")
-#                 return redirect('/login')
-# 	return redirect('/login')
->>>>>>> e33cb13dc96d3348d061e227f00eed6f7b147a30
