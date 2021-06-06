@@ -108,14 +108,42 @@
               <div class="row">
                 <div class="col-md-12">
                   <fieldset>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="lastname" type="text" class="form-control"  placeholder="last Name" required>
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Your password" required="">
+                  </fieldset>
+                </div>
+                  <div class="col-md-12">
+                  <fieldset>
+                    <input name= "confirm_password" type="password" class="form-control" id="comf_password" placeholder="confirm password" required="">            
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
                     <select class="form-select" name="option" aria-label="Default select example">
-                      <option style="background-color: #1d1d1d;" class="option" selected>Open this select menu</option>
+                      <option style="background-color: #1d1d1d;" class="option" selected>Student/Teacher</option>
                       <option style="background-color: #1d1d1d;" class="option" value="student">student</option>
                       <option style="background-color: #1d1d1d;" class="option" value="teacher">teacher</option>
                     </select>   
                     <label style="display:none;">
                       <input placeholder="About your self" name="about" type="text" ></input>
-                      <input placeholder="upload your CV" name="cv" type="file" ></input>
+                      <label style="color: honeydew;" for="CVFile">Upload C.V. Here:</label>
+                      <input placeholder="upload your CV" id="CVFile" name="cv" type="file" ></input>
+                      <label style="color: honeydew;" for="imageHere">Upload Image:</label>
+                      <input placeholder="upload image" id="imageHere" name="img" type="file" ></input>
                       <input list="gender" name="gender" placeholder="Gender">
                       <datalist id="gender">
                         <option class="nopad" value="m">
@@ -142,44 +170,15 @@
                         <option class="nopad" value="bethlehem">
                       </datalist>
                       <input placeholder="your birthdate" name="birthDate" type="date"  ></input>
-                      <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                      <input type="tel" id="phone" name="phone" class="form-control" placeholder="Mobile number: 0599123456"  pattern="[0-9]{10}">
                     </label>   
                   </fieldset>
                 </div>
-                
-
-                <div class="col-md-12">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
-                  </fieldset>
-                </div>
-                <div class="col-md-12">
-                  <fieldset>
-                    <input name="lastname" type="text" class="form-control"  placeholder="last Name" required>
-                  </fieldset>
-                </div>
-                <div class="col-md-12">
-                  <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
-                  </fieldset>
-                </div>
-                <div class="col-md-12">
-                  <fieldset>
-                    <input name="password" type="password" class="form-control" id="password" placeholder="Your password" required="">
-                  </fieldset>
-                </div>
-                  <div class="col-md-12">
-                  <fieldset>
-                    <input name= "confirm_password" type="password" class="form-control" id="comf_password" placeholder="confirm password" required="">            
-                  </fieldset>
-                </div>
-                
                 <div class="col-md-12">
                   <fieldset>
                     <button type="submit" id="form-submit" class="button">Sign Up</button>
                   </fieldset>
                 </div>
-                
               </div>
             </form>
           </div>

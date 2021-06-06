@@ -17,19 +17,19 @@ class UserManager(models.Manager):
         """
         errors={}
         nameRegex = re.compile(r'([a-zA-Z]).{3,32}')
-        if not nameRegex.match(formPOST["firstName"]):
+        if not nameRegex.match(formPOST["name"]):
             errors["name"] = "name should be at least 3 characters, can't contain numbers"
-        if not nameRegex.match(formPOST["lastName"]):
-            errors["lastName"] = "name should be at least 3 characters, can't contain numbers"
+        if not nameRegex.match(formPOST["lastname"]):
+            errors["lastname"] = "name should be at least 3 characters, can't contain numbers"
         
-        todayTime= strftime("%Y-%m-%d", localtime())
-        postTime = formPOST['birthDate']
-        todayTimeList = todayTime.split("-")
-        postTimeList = postTime.split("-")
-        if (todayTimeList[2] - postTimeList[2] >=  15):
-            if  (todayTimeList[1] > postTimeList[1]):
-                if (todayTimeList[0] > postTimeList[0]):
-                    errors["birthDate"] = "Sorry! you have be at least 15years to regester"
+        # todayTime= strftime("%Y-%m-%d", localtime())
+        # postTime = formPOST['birthDate']
+        # todayTimeList = todayTime.split("-")
+        # postTimeList = postTime.split("-")
+        # if (todayTimeList[0] - postTimeList[0] >= 15):
+        #     if  (todayTimeList[1] > postTimeList[1]):
+        #         if (todayTimeList[2] >= postTimeList[2]):
+        #             errors["birthDate"] = "Sorry! you have to be at least 15years to regester"
         
         emailRegex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not emailRegex.match(formPOST['email']):
@@ -75,14 +75,14 @@ class User(models.Model):
     """
     firstName = models.CharField(max_length=255)
     lastName = models.CharField(max_length=255)
-    about = models.TextField()
+    about = models.TextField(null=True)
     email = models.CharField(max_length=255)
-    birthDate = models.DateField()
+    birthDate = models.DateField(null=True)
     passwd = models.CharField(max_length=255)
     planePassword = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    mobile=models.CharField(max_length=15)#0598135  213  21
+    mobile=models.CharField(max_length=15, null=True)#0598135  213  21
     statusChoices=(('active', 'active'),('deleted','deleted'),('inactive','inactive'),('Suspended','Suspended'))
     status = models.CharField(max_length=25, default='active', choices = statusChoices)#active by default, can be deleted
     courseChoices=(('physics', 'physics'),('chemistry','chemistry'),('english','english'),('mathematics','mathematics'),('arabic','arabic'),('biology','biology'),('art','art'),('music','music'),('history','history'))
@@ -90,13 +90,13 @@ class User(models.Model):
     privilageChoices=((9, 9),(8,8),(7,7),(1,1),(0,0))
     privilage = models.IntegerField(default=9, choices = privilageChoices)#needs revision
     genderChoices=(('m', 'm'),('f','f'))
-    gender = models.CharField(max_length=2, choices = genderChoices)#maleorfemale
-    cv = models.FileField(upload_to='uploads/%Y%m%d', max_length=254,null=True)#pdf files nullable
-    img = models.ImageField(upload_to='images/',null=True)#image of teacher nullable
+    gender = models.CharField(max_length=2, choices = genderChoices, null=True)#maleorfemale
+    cv = models.FileField(upload_to='uploads/%Y%m%d', max_length=254, null=True)#pdf files nullable
+    img = models.ImageField(upload_to='images/', null=True)#image of teacher nullable
     raters=models.IntegerField(null=True)
     rate=models.FloatField(null=True)
     locationChoices=(('Ramallah', 'Ramallah'),('Hebron','Hebron'),('Nablus','Nablus'),('Jenin','Jenin'),('Bethlehem','Bethlehem'))
-    location = models.CharField(max_length=35,null=True, choices = locationChoices)
+    location = models.CharField(max_length=35, null=True, choices = locationChoices)
     objects = UserManager()
 
     # Command For Shell

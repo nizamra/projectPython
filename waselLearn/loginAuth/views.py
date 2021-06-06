@@ -73,7 +73,7 @@ def loginOrRegister(request):
             return redirect('/login')
         else:
             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-            User.objects.create(firstName=request.POST['name'],lastName=request.POST['lastname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['birthDate'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['mobile'],status="active",privilage=9,gender=request.POST['gender'],location=request.POST['location'])
+            User.objects.create(firstName=request.POST['name'],lastName=request.POST['lastname'],email=request.POST['email'],passwd=hashedPasswd,planePassword=request.POST['password'],status="active",privilage=9)
             thisUser=User.objects.get(email=request.POST['email'])
             request.session['userId']=thisUser.id
             return redirect('waselApp/home')
