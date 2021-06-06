@@ -63,8 +63,7 @@ def success(request):
 #         'users':User.objects.all()
 #     }
 #     return render(request, "show.html",ccs)
-
-
+                    
 def loginOrRegister(request):
     if (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="student"):
         errors = User.objects.isValid(request.POST)
@@ -74,7 +73,7 @@ def loginOrRegister(request):
             return redirect('/login')
         else:
             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-            User.objects.create(firstName=request.POST['fname'],lastName=request.POST['lname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['bday'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['mobile'],status=request.POST['status'],privilage=9,gender=request.POST['gender'],location=request.POST['location'])
+            User.objects.create(firstName=request.POST['name'],lastName=request.POST['lastname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['birthDate'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['mobile'],status="active",privilage=9,gender=request.POST['gender'],location=request.POST['location'])
             thisUser=User.objects.get(email=request.POST['email'])
             request.session['userId']=thisUser.id
             return redirect('waselApp/home')
@@ -87,7 +86,7 @@ def loginOrRegister(request):
 
         else:
             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-            User.objects.create(firstName=request.POST['fname'],lastName=request.POST['lname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['bday'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['mobile'],status=request.POST['status'],course=request.POST['course'],privilage=8,gender=request.POST['gender'],cv=request.POST['cv'],img=request.POST['img'],location=request.POST['location'])
+            User.objects.create(firstName=request.POST['name'],lastName=request.POST['lastname'],about=request.POST['about'],email=request.POST['email'],birthDate=request.POST['birthDate'],passwd=hashedPasswd,planePassword=request.POST['password'],mobile=request.POST['phone'],status="active",course=request.POST['course'],privilage=8,gender=request.POST['gender'],cv=request.POST['cv'],img=request.POST['img'],location=request.POST['location'])
             
             thisUser=User.objects.get(email=request.POST['email'])
             request.session['userId']=thisUser.id
