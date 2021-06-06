@@ -19,6 +19,52 @@ def teachers(request):
     }
     return render(request,"teachers.html",context)
 
+def teachersBiology(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="biology"),
+    }
+    return render(request,"teachers.html",context)
+def teachersphysics(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="physics"),
+    }
+    return render(request,"teachers.html",context)
+def teacherschemistry(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="chemistry"),
+    }
+    return render(request,"teachers.html",context)
+def teachersenglish(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="english"),
+    }
+    return render(request,"teachers.html",context)
+def teachersmathematics(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="mathematics"),
+    }
+    return render(request,"teachers.html",context)
+def teachersarabic(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="arabic"),
+    }
+    return render(request,"teachers.html",context)
+def teachersart(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="art"),
+    }
+    return render(request,"teachers.html",context)
+def teachersmusic(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="music"),
+    }
+    return render(request,"teachers.html",context)
+def teachershistory(request):
+    context={
+        'allUsers' : User.objects.filter(privilage=7, course="history"),
+    }
+    return render(request,"teachers.html",context)
+
 def suggest(request):
     Sugestion.objects.create(title=request.POST['title'],fullName=request.POST['name'],email=request.POST['email'],description=request.POST['message'])
     return redirect('/')
