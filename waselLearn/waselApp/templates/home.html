@@ -252,7 +252,7 @@
                     <h4>Arabic</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/arabic">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -262,7 +262,7 @@
                     <h4>biology</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/biology">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -272,7 +272,7 @@
                     <h4>Chemistry</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/Chemistry">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -282,7 +282,7 @@
                     <h4>english</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/english">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -292,7 +292,7 @@
                     <h4>history</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/history">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -302,7 +302,7 @@
                     <h4>mathematics</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/mathematics">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                     <h4>music</h4>
                     <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
                     <div class="text-button-pay">
-                        <a href="/waselApp/teachers">Teachers<i class="fa fa-angle-double-right"></i></a>
+                        <a href="/waselApp/teachers/music">Teachers<i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -337,14 +337,20 @@
         
                 	
                     
-          <form id="contact" action="" method="post">
+          <form id="contact" action="/waselApp/suggest" method="post">
+            {% csrf_token %}
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <fieldset>
+                  <input name="title" type="text" class="form-control" id="title" placeholder="title" required="">
+                </fieldset>
+              </div>
+              <div class="col-md-4">
                   <fieldset>
                     <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
                   </fieldset>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <fieldset>
                     <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
                   </fieldset>
