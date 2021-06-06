@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.http import JsonResponse
 from time import localtime, strftime
 from .models import *
 
@@ -83,3 +84,24 @@ def teacher(request,teacherId):
 def cleanTheSession(request):
     request.session.clear()
     return redirect('/')
+
+# def autocomplete(request, str): 
+#     data={}    
+#     x=User.objects.filter(first_name__contains=str)  
+#     names=[]    
+#     for i in x:       
+#         names.append('<div>' + i.first_name + '</div>')       
+#     data['names'] = names   
+#     return JsonResponse(data)    
+
+def autocomplete(request, str): 
+    data={}     
+    x=User.objects.filter(firstName__contains=str)
+    names=[]     
+    for i in x:         
+        names.append(i.firstName )     
+        data['names'] = names
+    return JsonResponse(data)
+
+def new(request):
+    return render(request, 'new.html')

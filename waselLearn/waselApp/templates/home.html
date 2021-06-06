@@ -13,7 +13,6 @@
       <title>Wasel Learn</title>
     <link rel="stylesheet" href=" https://code.jquery.com/jquery-3.6.0.min.js "> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -33,6 +32,12 @@
     
 
   </head>
+
+  <style> 
+  
+  
+  </style>
+
 
 <body>
 
@@ -57,9 +62,45 @@
         <li><a href="#section4">Courses</a></li>
         <li><a href="#section6">Contact</a></li>
         <li><a href="/login" class="external">LOGIN</a></li>
+        <li>  
+          <li class="nav-item">
+              <input style="width:150px;background-color: azure; "  class="form-control" id="txtSearch" name="txtSearch">
+            </li>
+          <!-- <form action="/search/{str" class="d-flex" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" id="inp" type="search" placeholder="Search" aria-label="Search">
+          </form> -->
+      </li>
       </ul>
     </nav>
   </header>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script> 
+  
+      $(document).ready(function(){ 
+              $("#txtSearch").on('keyup', function(e) {
+      
+              e.preventDefault(); // avoid to execute the actual submit of the form.
+              let val = $(this).val()
+      
+                let url = 'http://localhost:8000/waselApp/search/' + val;
+      
+                $.ajax({
+                      type: "GET",
+                      url: url,
+                      success: function(data)
+                      {
+                        availableTags = data.names
+                                $("#txtSearch").autocomplete({
+                                source: availableTags
+                                
+                });
+                      }
+                    });
+              });
+          });
+          </script>
 
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script> 
+    
+        $(document).ready(function(){ 
+                $("#txtSearch").on('keyup', function(e) {
+        
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+                let val = $(this).val()
+        
+                  let url = 'http://localhost:8000/waselApp/search/' + val;
+        
+                  $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function(data)
+                        {
+                          availableTags = data.names
+                                  $("#txtSearch").autocomplete({
+                                  source: availableTags
+                  });
+                        }
+                      });
+                });
+            });
+            </script>
+            <ol>
+            <li class="nav-item">
+                  <input style="width:150px" class="form-control" id="txtSearch" name="txtSearch">
+                </li>
+            </ol>
+      
+</html>

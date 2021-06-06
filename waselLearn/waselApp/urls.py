@@ -1,5 +1,5 @@
 from django.urls import path     
-from .views import home,subjects,about,allTeachers, teacher,teachers
+from .views import home,subjects,about,allTeachers, teacher,teachers,autocomplete,new
 urlpatterns = [
     path('home', home),
     path('subjects', subjects),
@@ -7,8 +7,8 @@ urlpatterns = [
     path('allTeachers', allTeachers),
     path('teachers', teachers),
     path('teacher/<int:teacherId>', teacher),
-    # path('waselApp/', views.),
-    # path('waselApp/', views.),
+    path('search/<str>', autocomplete),
+    path('new', new)
 ]
 
 
