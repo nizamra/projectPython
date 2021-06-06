@@ -1,5 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
+from time import localtime, strftime
 from .models import *
+
+def home(request):
+    return render(request,'home.html')
 
 def subjects(request):
     return render(request,'subjects.html')
@@ -9,9 +13,21 @@ def about(request):
 def allTeachers(request):
     return render(request,'allTeachers.html')
 def teachers(request):
-    return render(request,'teacher.html')
+    context={
+        'allUsers' : User.objects.all(),
+    }
+    return render(request,"teachers.html",context)
 
-
+    
+def teacher(request,teacherId):
+    todayTime= strftime("%Y-%B-%A", localtime())
+    todayTimeList = todayTime.split("-")
+    context={
+		'teacher' : User.objects.get(id=teacherId),
+		'times' : todayTimeList,
+        'n' : range(9) 
+	}
+    return render(request,"teacher.html",context)
 
 
 

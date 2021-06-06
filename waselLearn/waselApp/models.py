@@ -97,5 +97,5 @@ class dayTimeSlot(models.Model):
     name = models.CharField(max_length=20)
     startAt = models.DateTimeField()
     endAt = models.DateTimeField()
-    freeTeachers=models.ManyToManyField(User, related_name="freeAt", null=True)
+    freeTeachers=models.ManyToManyField(User, related_name="freeAt")
     objects = dayTimeSlotManager()
