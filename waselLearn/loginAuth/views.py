@@ -1,15 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
+import bcrypt
 from .models import *
 from .forms import *
 
 # Create your views here.
-def imageView(request):
+def login(request):
+	return render(request,"login.html")
 
+def imageView(request):
 	if request.method == 'POST':
 		form = UserForm(request.POST, request.FILES)
-
 		if form.is_valid():
 			form.save()
 			return redirect('success')
@@ -23,6 +25,12 @@ def success(request):
         users=User.objects.all()
         return render(request, 'show.html',
                      {'allUsers' : users})
+
+# def teachers(request):
+# 	context={
+# 		'allUsers' : User.objects.all(),
+# 	}
+# 	return render(request,"teachers.html",context)
 
 
 
@@ -54,53 +62,79 @@ def success(request):
 #     }
 #     return render(request, "show.html",ccs)
 
+def loginOrRegister(request):
+    if (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="student"):
+        errors = User.objects.isValid(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/login')
+        else:
+            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+			User.objects.create(firstName=request.POST['fname'],
+			lastName=request.POST['lname'],
+			about=request.POST['about'],
+			email=request.POST['email'],
+			birthDate=request.POST['bday'],
+			passwd=hashedPasswd,
+			planePassword=request.POST['password'],
+			mobile=request.POST['mobile'],
+			status=request.POST['status'],
+			privilage=9,
+			gender=request.POST['gender'],
 
-
-
-
-
-
-# def loginOrRegister(request):
-#     if (request.method=="POST") and (request.POST['regesterOrLogin']=="register"):
-#         errors = User.objects.isValid(request.POST)
-#         if len(errors) > 0:
-#             for key, value in errors.items():
-#                 messages.error(request, value)
-#             return redirect('/')
-#         else:
-
-#             hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-            
-#             User.objects.create(fname=request.POST['fname'],lname=request.POST['lname'],birthDate=request.POST['bday'],email=request.POST['email'],passwd=hashedPasswd)
-#             request.session['logedin']=True
-#             request.session['email'] = request.POST['email']
-#             thisUser=User.objects.get(email=request.POST['email'])
-#             request.session['id']=thisUser.id
-#             request.session['thisUsersName']=thisUser.fname
-#             return redirect('/thoughts')
-
-#     elif (request.method=="POST" and request.POST['regesterOrLogin']=="login"):
-#         errors = User.objects.loginValid(request.POST)
-#         if len(errors) > 0:
-#             for key, value in errors.items():
-#                 messages.error(request, value)
-#             return redirect('/')
-#         else:
-#             one=request.POST['email']
-#             two=request.POST['password']
-#             try:
-#                 users = User.objects.filter(email=one)
-#                 thisUser = users[0]
-#             except:
-#                 messages.error(request, "this email doesn't exist")
-#                 return redirect('/')
-#             if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
-#                 request.session['id']=thisUser.id
-#                 request.session['logedin']=True
-#                 request.session['thisUsersName']=one
-#                 request.session['email']=one
-#                 return redirect('/thoughts')
-#             else:
-#                 messages.error(request, "I have this email but the password is NOT right")
-#                 return redirect('/')
-#     return redirect('/')
+			location=request.POST['location'])
+			
+			thisUser=User.objects.get(email=request.POST['email'])
+			request.session['userId']=thisUser.id
+			return redirect('waselApp/home')
+    elif (request.method=="POST") and (request.POST['regesterOrLogin']=="register")and (request.POST['option']=="teacher"):
+        errors = User.objects.isValid(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/login')
+        else:
+            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+			User.objects.create(firstName=request.POST['fname'],
+			lastName=request.POST['lname'],
+			about=request.POST['about'],
+			email=request.POST['email'],
+			birthDate=request.POST['bday'],
+			passwd=hashedPasswd,
+			planePassword=request.POST['password'],
+			mobile=request.POST['mobile'],
+			status=request.POST['status'],
+			course=request.POST['course'],
+			privilage=8,
+			gender=request.POST['gender'],
+			cv=request.POST['cv'],
+			img=request.POST['img'],
+			location=request.POST['location'])
+			
+			thisUser=User.objects.get(email=request.POST['email'])
+			request.session['userId']=thisUser.id
+			return redirect('waselApp/home')
+	elif (request.method=="POST") and (request.POST['regesterOrLogin']=="login"):
+		errors = User.objects.loginValid(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/login')
+        else:
+            one=request.POST['email']
+            two=request.POST['password']
+            try:
+                users = User.objects.filter(email=one)
+                thisUser = users[0]
+            except:
+                messages.error(request, "this email doesn't exist")
+                return redirect('/login')
+            # if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
+            if (two==thisUser.planePassword):
+                request.session['userId']=thisUser.id
+                return redirect('waselApp/home')
+            else:
+                messages.error(request, "I have this email but the password is NOT right")
+                return redirect('/login')
+	return redirect('/login')
