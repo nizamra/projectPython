@@ -28,7 +28,7 @@
 
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="#"><em>Wasel</em> Learn</a>
+      <a href="/waselApp/home"><em>Wasel</em> Learn</a>
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
@@ -36,19 +36,17 @@
         <li><a href="/waselApp/home" class="external">Home</a></li>
         <li class="has-submenu"><a href="#section2">About Us</a>
           <ul class="sub-menu">
-            <li><a href="#section2">Who we are?</a></li>
-            <li><a href="#section3">What we do?</a></li>
-            <li><a href="#section3">How it works?</a></li>
-            <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
+            <li><a href="/waselApp/home#section2" class="external">Who we are?</a></li>
+            <li><a href="/waselApp/home#section3" class="external">What we do?</a></li>
+            <li><a href="/waselApp/home#section3" class="external">How it works?</a></li>
           </ul>
         </li>
-        <li><a href="#section4">Courses</a></li>
-        
-        <li><a href="#section6">Contact</a></li>
+        <li><a href="/waselApp/home#section4">Courses</a></li>
+
+        <li><a href="/waselApp/home#section6">Contact</a></li>
       </ul>
     </nav>
   </header>
-
   {% if messages %}
   <section class="section coming-soon" data-section="section2">
       {% for message in messages %}
