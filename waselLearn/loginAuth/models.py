@@ -95,7 +95,8 @@ class User(models.Model):
     img = models.ImageField(upload_to='images/',null=True)#image of teacher nullable
     raters=models.IntegerField(null=True)
     rate=models.FloatField(null=True)
-    location = models.CharField(max_length=35,null=True)
+    locationChoices=(('Ramallah', 'Ramallah'),('Hebron','Hebron'),('Nablus','Nablus'),('Jenin','Jenin'),('Bethlehem','Bethlehem'))
+    location = models.CharField(max_length=35,null=True, choices = locationChoices)
     objects = UserManager()
 
     # Command For Shell

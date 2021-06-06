@@ -12,13 +12,17 @@ def about(request):
 
 def allTeachers(request):
     return render(request,'allTeachers.html')
+
 def teachers(request):
     context={
-        'allUsers' : User.objects.all(),
+        'allUsers' : User.objects.filter(privilage=7),
     }
     return render(request,"teachers.html",context)
 
-    
+def suggest(request):
+    Sugestion.objects.create(title=request.POST['title'],fullName=request.POST['name'],email=request.POST['email'],description=request.POST['message'])
+    return redirect('/')
+
 def teacher(request,teacherId):
     todayTime= strftime("%Y-%B-%A", localtime())
     todayTimeList = todayTime.split("-")
