@@ -70,7 +70,8 @@ def loginOrRegister(request):
                 messages.error(request, value)
             return redirect('/login')
         else:
-            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(),
+			bcrypt.gensalt()).decode(),
 			User.objects.create(firstName=request.POST['fname'],
 			lastName=request.POST['lname'],
 			about=request.POST['about'],
